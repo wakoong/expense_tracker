@@ -1,6 +1,6 @@
 /* Created by Emma Bostian: https://github.com/emmabostian/fem-design-systems */
-import { blue, neutral, yellow, green, red } from "./colors";
-import { primaryFont } from "./typography";
+import { blue, neutral, yellow, green, red } from './colors';
+import { primaryFont } from './typography';
 
 export const defaultTheme = {
   primaryColor: blue[300],
@@ -25,8 +25,8 @@ export const defaultTheme = {
     errorColorActive: red[300],
     successColor: green[100],
     successColorHover: green[200],
-    successColorActive: green[300]
-  }
+    successColorActive: green[300],
+  },
 };
 
 export const darkTheme = {
@@ -52,6 +52,6 @@ export const darkTheme = {
     errorColorActive: red[300],
     successColor: green[100],
     successColorHover: green[200],
-    successColorActive: green[300]
-  }
+    successColorActive: green[300],
+  },
 };
