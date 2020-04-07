@@ -1,56 +1,82 @@
 // react imports
 import React, { useState } from 'react';
-// material-ui
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+// imports
+import Card from '../components/Cards';
+import { colorPaletteMS } from '../utils/colors';
+import { months as data, emojis } from '../utils';
+// 3rd-party imports
+import styled from 'styled-components';
+import ReactCardFlip from 'react-card-flip';
+import SettingsIcon from '@material-ui/icons/Settings';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(1),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-      height: '30vh',
-    },
-  })
-);
+const Layout = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 50px auto;
+  font-size: 1.5em;
+`;
 
-function FormRow() {
-  const classes = useStyles();
-  return (
-    <React.Fragment>
-      <Grid item xs={4}>
-        <Paper className={classes.paper}>item</Paper>
-      </Grid>
-      <Grid item xs={4}>
-        <Paper className={classes.paper}>item</Paper>
-      </Grid>
-      <Grid item xs={4}>
-        <Paper className={classes.paper}>item</Paper>
-      </Grid>
-    </React.Fragment>
-  );
-}
+const Header = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  padding: 5px 20px;
+
+  .settings {
+    display: flex;
+    justify-content: flex-end;
+  }
+`;
+
+const Body = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+`;
 
 export default function Main() {
-  const classes = useStyles();
+  const [months, setMonth] = useState(data);
+
+  const selectMonth = (idx) => {
+    const update = months.map((m) =>
+      m.id === idx ? { ...m, isSelected: !m.isSelected } : m
+    );
+    setMonth(update);
+  };
+
+  console.log('months', months);
+
+  const colorPalette: string[] = Object.keys(colorPaletteMS);
   return (
-    <React.Fragment>
-      <Grid container>
-        <Grid container item xs={12}>
-          <FormRow />
-        </Grid>
-        <Grid container item xs={12}>
-          <FormRow />
-        </Grid>
-        <Grid container item xs={12}>
-          <FormRow />
-        </Grid>
-      </Grid>
-    </React.Fragment>
+    <Layout>
+      <Header>
+        <div>ExpenseTracker</div>
+        <div className="settings">
+          <SettingsIcon />
+        </div>
+      </Header>
+      <Body>
+        {colorPalette.map((val, idx) => (
+          <ReactCardFlip
+            isFlipped={months[idx].isSelected}
+            flipDirection="vertical"
+            key={colorPaletteMS[val]}
+          >
+            <Card
+              val={val}
+              color={val}
+              emoji={emojis[idx]}
+              select={() => selectMonth(idx)}
+            />
+            <Card
+              val="test"
+              color="default"
+              emoji={emojis[idx]}
+              select={() => selectMonth(idx)}
+            />
+          </ReactCardFlip>
+        ))}
+      </Body>
+    </Layout>
   );
 }

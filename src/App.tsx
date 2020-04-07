@@ -10,8 +10,8 @@ import styled from 'styled-components';
 function App() {
   return (
     <div className="App">
-      {/* <Main /> */}
-      <Expenses />
+      <Main />
+      {/* <Expenses /> */}
       <GlobalStyle />
     </div>
   );
