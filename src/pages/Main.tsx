@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 // imports
+import Header from '../components/Header';
 import { Settings } from './Settings';
 import Card from '../components/Cards';
 import { colorPaletteMS } from '../utils/colors';
@@ -18,17 +19,17 @@ const Layout = styled.div`
   font-size: 1.5em;
 `;
 
-const Header = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  align-items: center;
-  padding: 5px 20px;
+// const Header = styled.div`
+//   display: grid;
+//   grid-template-columns: 2fr 1fr;
+//   align-items: center;
+//   padding: 5px 20px;
 
-  .settings {
-    display: flex;
-    justify-content: flex-end;
-  }
-`;
+//   .settings {
+//     display: flex;
+//     justify-content: flex-end;
+//   }
+// `;
 
 const Body = styled.div`
   display: grid;
@@ -51,13 +52,8 @@ export default function Main() {
   const colorPalette: string[] = Object.keys(colorPaletteMS);
   return (
     <Layout>
-      <Header>
-        <div>ExpenseTracker</div>
-        <div className="settings">
-          <Link to="/settings">
-            <SettingsIcon />
-          </Link>
-        </div>
+      <Header title="Expense Tracker" link="settings">
+        <SettingsIcon />
       </Header>
       <Body>
         {colorPalette.map((val, idx) => (

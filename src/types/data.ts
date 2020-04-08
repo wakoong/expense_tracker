@@ -12,3 +12,8 @@ type EMOJI = {
 };
 
 export type EMOJIS = EMOJI[];
+
+export type HeaderProps = {
+  title: string;
+  link: string;
+};
