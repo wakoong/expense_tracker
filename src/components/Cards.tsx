@@ -1,5 +1,6 @@
 // react imports
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 // imports
 import { colorPaletteMS } from '../utils';
 import Emoji from './Emojis';
@@ -48,7 +49,9 @@ export default function Card({ color, val, emoji, select }) {
         <Content>
           <Emoji symbol={emoji.symbol} label={emoji.label} />
           <div className="cost">+ $700</div>
-          <div>Track your expense: {'📝'}</div>
+          <Link to="/expenses" target="_blank">
+            Track your expense: {'📝'}
+          </Link>
         </Content>
       ) : (
         <Fragment>{val}</Fragment>

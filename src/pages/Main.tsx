@@ -1,6 +1,8 @@
 // react imports
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 // imports
+import { Settings } from './Settings';
 import Card from '../components/Cards';
 import { colorPaletteMS } from '../utils/colors';
 import { months as data, emojis } from '../utils';
@@ -52,7 +54,9 @@ export default function Main() {
       <Header>
         <div>ExpenseTracker</div>
         <div className="settings">
-          <SettingsIcon />
+          <Link to="/settings">
+            <SettingsIcon />
+          </Link>
         </div>
       </Header>
       <Body>
