@@ -17,11 +17,14 @@ export const GlobalStyle = createGlobalStyle`
     body {
         margin: 0;
         padding: 0;
-        font-family: ${primaryFont}
+        font-family: ${primaryFont};
+        text-decoration: none !important;
     }
 
     main {
         width: 90%;
         margin: 0 auto;
     }
+
+
 `;
