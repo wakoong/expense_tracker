@@ -1,35 +1,22 @@
 // react imports
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 // imports
 import Header from '../components/Header';
-import { Settings } from './Settings';
 import Card from '../components/Cards';
+import Dropdown from '../components/Dropdown';
+import { useToggle } from '../hooks/index';
 import { colorPaletteMS } from '../utils/colors';
 import { months as data, emojis } from '../utils';
 // 3rd-party imports
 import styled from 'styled-components';
 import ReactCardFlip from 'react-card-flip';
-import SettingsIcon from '@material-ui/icons/Settings';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const Layout = styled.div`
   height: 100vh;
   display: grid;
   grid-template-rows: 50px auto;
-  font-size: 1.5em;
 `;
-
-// const Header = styled.div`
-//   display: grid;
-//   grid-template-columns: 2fr 1fr;
-//   align-items: center;
-//   padding: 5px 20px;
-
-//   .settings {
-//     display: flex;
-//     justify-content: flex-end;
-//   }
-// `;
 
 const Body = styled.div`
   display: grid;
@@ -39,6 +26,7 @@ const Body = styled.div`
 
 export default function Main() {
   const [months, setMonth] = useState(data);
+  const [isOpen, toggleOpen] = useToggle(false);
 
   const selectMonth = (idx) => {
     const update = months.map((m) =>
@@ -47,14 +35,16 @@ export default function Main() {
     setMonth(update);
   };
 
-  console.log('months', months);
-
   const colorPalette: string[] = Object.keys(colorPaletteMS);
   return (
     <Layout>
       <Header title="Expense Tracker" link="settings">
-        <SettingsIcon />
+        <div style={{ position: 'relative' }}>
+          <ArrowDropDownIcon onClick={toggleOpen} />
+          {isOpen && <Dropdown />}
+        </div>
       </Header>
+
       <Body>
         {colorPalette.map((val, idx) => (
           <ReactCardFlip
