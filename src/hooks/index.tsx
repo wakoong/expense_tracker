@@ -9,6 +9,18 @@ export function useToggle(initialValue) {
   return [value, toggleValue];
 }
 
+export function useTab(initialValue) {
+  const [activeTab, setTab] = useState(initialValue);
+
+  const selectTab = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    const target = (e.target as HTMLElement).id;
+    setTab(target);
+  };
+
+  return [activeTab, selectTab];
+}
+
 // Use for selecting an item
 export function useSelect(initialValue, id) {
   const [values, setValue] = useState(initialValue);
