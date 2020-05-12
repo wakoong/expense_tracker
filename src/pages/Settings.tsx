@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import SidePanel from '../components/Panels/SidePanel';
 import Account from '../components/Settings/Account';
+import FixedCost from '../components/Settings/FixedCost';
 // 3rd-party imports
 import styled from 'styled-components';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -25,8 +26,9 @@ export function Settings() {
       </Header>
       <div>
         <SidePanel tabs={['Account', 'Fixed Cost', 'Variable Cost']}>
+          <FixedCost />
           <Account />
-          <div>1</div>
+
           <div>2</div>
         </SidePanel>
       </div>

@@ -10,7 +10,7 @@ const Layout = styled.div`
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   border: 1px solid black;
-  margin-right: 5px;
+  margin-right: 10px;
 `;
 
 const Expense = styled.div`
